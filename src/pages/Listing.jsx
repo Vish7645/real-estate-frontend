@@ -32,7 +32,9 @@ export default function Listing() {
     const fetchListing = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`${apiUrl}/api/listing/get/${params.listingId}`);
+        const res = await fetch(`${apiUrl}/api/listing/get/${params.listingId}`, {
+          credentials: "include"
+        });
         const data = await res.json();
         if (data.success === false) {
           setError(true);
@@ -49,7 +51,6 @@ export default function Listing() {
     };
     fetchListing();
   }, [params.listingId]);
-  console.log(loading);
 
   return (
     <main>
